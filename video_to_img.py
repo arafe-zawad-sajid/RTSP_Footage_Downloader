@@ -46,15 +46,17 @@ def capture_and_save_frames(video_name, video_path, output_folder):
 
         success, frame = cap.read()
         count = 0
+        file_count = 0
         while success:
             if count % interval == 0:
                 # print(f"Saving frame {count} from video {video_path}")
                 save_frame(video_name, frame, count, output_folder)
+                file_count+=1
             success, frame = cap.read()
             count += 1
         cap.release()
         print(f"Finished processing: {video_path}")
-        print(f"Total frames: {count+1}")
+        print(f"Total files: {file_count}")
     except Exception as e:
         print(f"Error capturing frames from {video_path}: {e}")
 
